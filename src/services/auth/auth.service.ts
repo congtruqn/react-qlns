@@ -13,15 +13,15 @@ class AuthService {
         password
       })
       .then(response => {
-        if (response.data.data.access_token) {
-          localStorage.setItem("user", JSON.stringify(response.data.data.access_token));
+        if (response.data?.data?.access_token) {
+          localStorage.setItem("access", JSON.stringify(response.data.data.access_token));
         }
         return response.data;
       });
   }
 
   logout() {
-    localStorage.removeItem("user");
+    localStorage.removeItem("access");
   }
 
   register(username: string, email: string, password: string) {
@@ -33,7 +33,7 @@ class AuthService {
   }
 
   getCurrentUser() {
-    const userStr = localStorage.getItem("user");
+    const userStr = localStorage.getItem("access");
     if (userStr) return JSON.parse(userStr);
 
     return null;
