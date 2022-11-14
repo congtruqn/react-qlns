@@ -3,7 +3,6 @@ import { NavLink, Navigate, useNavigate, NavigateFunction } from 'react-router-d
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 import logo from '../../assets/images/logo_has_slogan.png';
 import { useTypedSelector } from '../../hooks/useTypeSelector';
-import Form from "react-validation/build/form";
 import AuthService from "../../services/auth/auth.service";
 type Props = {}
 const SignIn: React.FC<Props> = () => {
@@ -55,7 +54,7 @@ const SignIn: React.FC<Props> = () => {
                         </div>
                         <img src={logo} className="App-logo" alt="logo" />
                         <div className="auth__center__form">
-                            <Form onSubmit={handleLogin} ref={form}>
+                            
                                 <h3 className="mb-4">Đăng nhập</h3>
                                 <h3 className="mb-4"> GREENFEED QUẢN LÝ NĂNG SUẤT</h3>
                                 <div className="input-group mb-3">
@@ -81,7 +80,7 @@ const SignIn: React.FC<Props> = () => {
                                 <button className="btn btn-primary shadow-2">Đăng nhập</button>
 
                                 <p className="mb-0 text-muted">Chưa có tài khoản? <NavLink to="/auth/signup">Đăng ký</NavLink></p>
-                            </Form>
+                            
                         </div>
                     </div>
 

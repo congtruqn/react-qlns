@@ -9,10 +9,10 @@ class App extends Component {
   render() {
     return (
         <Routes>
-          <Route path={`/signup`} element={<SignUp />}></Route>
+          <Route path={`/signin`} element={<SignIn />}></Route>
           <Route path={`/`} element={<PrivateRoute />}>
-            <Route path={`/login`} element={<SignIn />}></Route>
-            <Route path={`/login1`} element={<SignIn />}></Route>
+            <Route path={`/signup`} element={<SignUp />}></Route>
+            <Route path={`/signup`} element={<SignUp />}></Route>
           </Route>
         </Routes>
     );
