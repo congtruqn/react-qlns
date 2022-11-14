@@ -1,16 +1,44 @@
 
 import {httpRequest} from '../http/HttpRequest'
-export default {
-    login: async (username:string, password:string) => {
-      return await httpRequest
-        .post({username, password})
-        .then((response) => {
-          const {access_token, refresh_token} = response.data
-          localStorage.setItem('access', access_token)
-          localStorage.setItem('refresh', refresh_token)
-          console.log('LOGINNNNN');
-          return response
-        })
-        .catch((error) => error)
-    }
+
+import axios from "axios";
+
+const API_URL = "https://api-admin-et.unibiz.io/";
+
+class AuthService {
+  login(username: string, password: string):any {
+    return axios
+      .post(API_URL + "login/", {
+        username,
+        password
+      })
+      .then(response => {
+        if (response.data.accessToken) {
+          localStorage.setItem("user", JSON.stringify(response.data));
+        }
+
+        return response.data;
+      });
+  }
+
+  logout() {
+    localStorage.removeItem("user");
+  }
+
+  register(username: string, email: string, password: string) {
+    return axios.post(API_URL + "signup", {
+      username,
+      email,
+      password
+    });
+  }
+
+  getCurrentUser() {
+    const userStr = localStorage.getItem("user");
+    if (userStr) return JSON.parse(userStr);
+
+    return null;
+  }
 }
+
+export default new AuthService();
