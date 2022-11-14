@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 
 // import './../../../assets/scss/style.scss';
 
-class SignUp1 extends React.Component {
+class SignUp extends React.Component {
     render () {
         return(
                 <div className="auth-wrapper">
@@ -43,4 +43,4 @@ class SignUp1 extends React.Component {
     }
 }
 
-export default SignUp1;
+export default SignUp;
