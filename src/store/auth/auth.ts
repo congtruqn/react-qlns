@@ -3,8 +3,6 @@ const REGISTER_FAIL = "REGISTER_FAIL";
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 const LOGIN_FAIL = "LOGIN_FAIL";
 const LOGOUT = "LOGOUT";
-const SET_MESSAGE = "SET_MESSAGE";
-const CLEAR_MESSAGE = "CLEAR_MESSAGE";
   
   const user = "";
   
@@ -12,7 +10,7 @@ const CLEAR_MESSAGE = "CLEAR_MESSAGE";
     ? { isLoggedIn: true, user }
     : { isLoggedIn: false, user: null };
   
-const authReducer =  (state:any = initialState, action:any) => {
+const authReducer =  (state:any = initialState, action:any) : any => {
     const { type, payload } = action;
   
     switch (type) {
