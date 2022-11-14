@@ -4,6 +4,7 @@ import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 import logo from '../../assets/images/logo_has_slogan.png';
 import { useTypedSelector } from '../../hooks/useTypeSelector';
 import AuthService from "../../services/auth/auth.service";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 type Props = {}
 const SignIn: React.FC<Props> = () => {
     let navigate: NavigateFunction = useNavigate();
@@ -25,25 +26,18 @@ const SignIn: React.FC<Props> = () => {
         setPassword(password);
     };
 
-    const handleLogin = (e:any) => {
-        e.preventDefault();
-
+    const handleLogin = (formValue: { username: string; password: string }) => {
+        
+        const { username, password } = formValue;
         setLoading(true);
 
-        //form.current.validateAll();
-
         AuthService.login(username, password)
-        // dispatch(AuthService.login(username, password))
-        //     .then(() => {
-        //       navigate("/profile");
-        //       window.location.reload();
-        //     })
-        //     .catch(() => {
-        //       setLoading(false);
-        // });
 
     };
-
+    const initialValues = {
+        username: "nguyen.np@exceltech.vn",
+        password: "123456",
+    };
     return (
         <div className="auth-wrapper">
             <div className="auth-content">
@@ -54,7 +48,11 @@ const SignIn: React.FC<Props> = () => {
                         </div>
                         <img src={logo} className="App-logo" alt="logo" />
                         <div className="auth__center__form">
-                            
+                            <Formik
+                                initialValues={initialValues}
+                                onSubmit={handleLogin}
+                            >
+                                <Form>
                                 <h3 className="mb-4">Đăng nhập</h3>
                                 <h3 className="mb-4"> GREENFEED QUẢN LÝ NĂNG SUẤT</h3>
                                 <div className="input-group mb-3">
@@ -80,7 +78,8 @@ const SignIn: React.FC<Props> = () => {
                                 <button className="btn btn-primary shadow-2">Đăng nhập</button>
 
                                 <p className="mb-0 text-muted">Chưa có tài khoản? <NavLink to="/auth/signup">Đăng ký</NavLink></p>
-                            
+                                </Form>
+                            </Formik>
                         </div>
                     </div>
 
