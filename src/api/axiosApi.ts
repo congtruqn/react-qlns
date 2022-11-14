@@ -47,7 +47,7 @@ axiosInstance.interceptors.response.use(
   function (response) {
     return response
   },
-  function (error) {
+  function (error) :any {
     const originalRequest = error.config
 
     const refreshToken = window.localStorage.getItem('refresh')
