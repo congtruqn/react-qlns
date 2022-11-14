@@ -4,7 +4,7 @@ import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 import logo from '../../assets/images/logo_has_slogan.png';
 import { useTypedSelector } from '../../hooks/useTypeSelector';
 import Form from "react-validation/build/form";
-import AuthService from "../../services/auth/auth";
+import AuthService from "../../services/auth/auth.service";
 type Props = {}
 const SignIn: React.FC<Props> = () => {
     let navigate: NavigateFunction = useNavigate();
@@ -16,17 +16,17 @@ const SignIn: React.FC<Props> = () => {
 
     const dispatch = useDispatch();
 
-    const onChangeUsername = (e) => {
+    const onChangeUsername = (e:any) => {
         const username = e.target.value;
         setUsername(username);
     };
 
-    const onChangePassword = (e) => {
+    const onChangePassword = (e:any) => {
         const password = e.target.value;
         setPassword(password);
     };
 
-    const handleLogin = (e) => {
+    const handleLogin = (e:any) => {
         e.preventDefault();
 
         setLoading(true);
@@ -64,7 +64,7 @@ const SignIn: React.FC<Props> = () => {
                                         name="username"
                                         value={username}
                                         onChange={onChangeUsername}
-                                        defaultValue='nguyen.np@exceltech.vn'
+                                       
                                     />
                                 </div>
                                 <div className="input-group mb-3">
@@ -73,7 +73,7 @@ const SignIn: React.FC<Props> = () => {
                                         name="password"
                                         value={password}
                                         onChange={onChangePassword}
-                                        defaultValue="123456"
+                                
                                     />
                                     <p className="mb-2 text-muted"> <NavLink to="/auth/reset-password-1">Quên mật khẩu?</NavLink></p>
                                 </div>

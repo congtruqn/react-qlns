@@ -5,10 +5,10 @@ const LOGIN_FAIL = "LOGIN_FAIL";
 const LOGOUT = "LOGOUT";
 const SET_MESSAGE = "SET_MESSAGE";
 const CLEAR_MESSAGE = "CLEAR_MESSAGE";
-
-const user = JSON.parse(localStorage.getItem("user"));
-
-const initialState = user
+  
+  const user = "";
+  
+  const initialState = user
     ? { isLoggedIn: true, user }
     : { isLoggedIn: false, user: null };
   

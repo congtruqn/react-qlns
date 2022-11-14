@@ -1,5 +1,5 @@
 
-import {httpRequest} from '../http/HttpRequest'
+import axiosInstance from '../../config/http/HttpInterceptor'
 
 import axios from "axios";
 
@@ -13,10 +13,9 @@ class AuthService {
         password
       })
       .then(response => {
-        if (response.data.accessToken) {
-          localStorage.setItem("user", JSON.stringify(response.data));
+        if (response.data.data.access_token) {
+          localStorage.setItem("user", JSON.stringify(response.data.data.access_token));
         }
-
         return response.data;
       });
   }
