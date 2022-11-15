@@ -11,7 +11,7 @@ const initialState = user
   ? { isLoggedIn: true, user }
   : { isLoggedIn: false, user: null };
   
-const authReducer =  (state:any = initialState, action:any) : any => {
+const authReducer =  (state : any = initialState, action : any) : any => {
     const { type, payload } = action;
   
     switch (type) {
