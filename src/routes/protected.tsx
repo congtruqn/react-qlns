@@ -1,10 +1,18 @@
-import React from "react";
-import { Navigate, Route } from "react-router-dom";
+import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-const PrivateRoute = (props:any) => {
-  console.log(props)
-  const token = localStorage.getItem("access");
-  return <>{token ? <Route {...props} /> : <Navigate to="/signin" />}</>;
-};
+import { history } from './history';
+import { useTypedSelector } from '../hooks/useTypeSelector';
+export { PrivateRoute };
 
-export default PrivateRoute;
+function PrivateRoute({ children }) {
+    const { user: authUser } = useTypedSelector((x:any) => x.auths);
+    
+    if (!authUser) {
+        // not logged in so redirect to login page with the return url
+        return <Navigate to="/signin" state={{ from: history.location }} />
+    }
+
+    // authorized so return child components
+    return children;
+}

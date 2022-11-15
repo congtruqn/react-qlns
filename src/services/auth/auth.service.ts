@@ -5,8 +5,12 @@ import axios from "axios";
 
 const API_URL = "https://api-admin-et.unibiz.io/";
 
+interface Ilogin  {
+  access:string,
+}
+
 class AuthService {
-  login(username: string, password: string):any {
+  async login(username: string, password: string):Promise<Ilogin> {
     return axios
       .post(API_URL + "login/", {
         username,

@@ -3,12 +3,13 @@ const REGISTER_FAIL = "REGISTER_FAIL";
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 const LOGIN_FAIL = "LOGIN_FAIL";
 const LOGOUT = "LOGOUT";
+
+
+const user = localStorage.getItem("access");
   
-  const user = "";
-  
-  const initialState = user
-    ? { isLoggedIn: true, user }
-    : { isLoggedIn: false, user: null };
+const initialState = user
+  ? { isLoggedIn: true, user }
+  : { isLoggedIn: false, user: null };
   
 const authReducer =  (state:any = initialState, action:any) : any => {
     const { type, payload } = action;

@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import './assets/scss/style.scss'
 import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
-import PrivateRoute from "./routes/protected";
+import {PrivateRoute} from "./routes/protected";
 
 class App extends Component {
   render() {
