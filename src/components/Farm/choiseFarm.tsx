@@ -1,21 +1,29 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
+import FarmService from "../../services/farms/farm.service";
 import { fetchFarms } from "../../store/farms/farmActions"
+
 import { useDispatch } from 'react-redux'
 type Props = {}
 const ChoiseFarm: React.FC<Props> = () => {
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(false);
-     useEffect(() => {
-
-      
-        console.log('a')
+    const [farms, setFarms] = useState([]);
+    useEffect(() => {
+        async function fetchMyAPI() {
+            let response = await FarmService.listFarms();
+            setFarms(response.results)
+            setLoading(false);
+            console.log(farms)
+        }
+        fetchMyAPI()
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
         }, 500);
-    }, [dispatch])
+    }, [])
+    
     return (
         <div className="choose-wrapper">
             {loading ? (
@@ -35,48 +43,22 @@ const ChoiseFarm: React.FC<Props> = () => {
                         <div className='table-responsive'>
                             <table className='table table-hover'>
                                 <tbody>
-                                    <tr className='unread'>
-                                        <td className='td'>
-                                            <h6 className='"mb-1'>Trại Cư Jut</h6>
-                                        </td>
-                                        <td className='td'>
-                                            Kín
-                                        </td>
-                                        <td className='td'>
-                                            <i className="fas fa-map-marker-alt"></i>Cư Jut, Dăk Nông
-                                        </td>
-                                        <td className='td'>
-                                            SL Vật nuôi : 412
-                                        </td>
+                                { farms.map(item => (
+                                   <tr className='unread' key={item.id}>
+                                    <td className='td'>
+                                        <h6 className='"mb-1'>{item.name}</h6>
+                                    </td>
+                                    <td className='td'>
+                                        Kín
+                                    </td>
+                                    <td className='td'>
+                                        <i className="fas fa-map-marker-alt"></i>Cư Jut, Dăk Nông
+                                    </td>
+                                    <td className='td'>
+                                        SL Vật nuôi : 412
+                                    </td>
                                     </tr>
-                                    <tr className='unread'>
-                                        <td className='td'>
-                                            <h6 className='"mb-1'>Trại Cư Jut</h6>
-                                        </td>
-                                        <td className='td'>
-                                            Kín
-                                        </td>
-                                        <td className='td'>
-                                            <i className="fas fa-map-marker-alt"></i>Cư Jut, Dăk Nông
-                                        </td>
-                                        <td className='td'>
-                                            SL Vật nuôi : 412
-                                        </td>
-                                    </tr>
-                                    <tr className='unread'>
-                                        <td className='td'>
-                                            <h6 className='"mb-1'>Trại Cư Jut</h6>
-                                        </td>
-                                        <td className='td'>
-                                            Kín
-                                        </td>
-                                        <td className='td'>
-                                            <i className="fas fa-map-marker-alt"></i>Cư Jut, Dăk Nông
-                                        </td>
-                                        <td className='td'>
-                                            SL Vật nuôi : 412
-                                        </td>
-                                    </tr>
+                                ))} 
                                 </tbody>
                             </table>
                             <div>
