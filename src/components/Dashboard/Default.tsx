@@ -1,10 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { NavLink, Navigate, useNavigate, NavigateFunction } from 'react-router-dom';
-import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
-import { useTypedSelector } from '../../hooks/useTypeSelector';
-import AuthService from "../../services/auth/auth.service";
 type Props = {}
-const SignIn: React.FC<Props> = () => {
+const Dashboard: React.FC<Props> = () => {
     return (
         <div className="auth-wrapper">
 
@@ -13,4 +9,4 @@ const SignIn: React.FC<Props> = () => {
 
 }
 
-export default SignIn;
+export default Dashboard;

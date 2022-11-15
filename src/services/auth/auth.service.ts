@@ -19,7 +19,9 @@ class AuthService {
       .then(response => {
         if (response.data?.data?.access_token) {
           localStorage.setItem("access", JSON.stringify(response.data.data.access_token));
+          localStorage.setItem("refress", JSON.stringify(response.data.data.refress_token));
         }
+        window.location.assign("/choisefarm");
         return response.data;
       });
   }

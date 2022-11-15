@@ -222,4 +222,19 @@
         transform: rotate(360deg) translate(-10px) rotate(-360deg);
     }
 }
-/**====== Authentication css end ======**/
+.choose-wrapper {
+    background: url('../../../../assets/images/bg_choise_farm.jpg');
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    min-width: 100%;
+    min-height: 100vh;
+    .choose-content{
+        position: relative;
+        width: 70%;
+        padding: 15px;
+        float: left;
+        z-index: 5;
+    }
+}

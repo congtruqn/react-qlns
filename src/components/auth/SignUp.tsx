@@ -1,8 +1,5 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-
-// import './../../../assets/scss/style.scss';
-
 class SignUp extends React.Component {
     render () {
         return(
