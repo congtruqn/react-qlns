@@ -7,31 +7,12 @@ import AuthService from "../../services/auth/auth.service";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 type Props = {}
 const SignIn: React.FC<Props> = () => {
-    let navigate: NavigateFunction = useNavigate();
     const form = useRef();
-    const [message, setMessage] = useState<string>("");
-    const [username, setUsername] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
-    const [loading, setLoading] = useState<boolean>(false);
-
+    const { user } = useTypedSelector((state) => state.auths);
     const dispatch = useDispatch();
-
-    const onChangeUsername = (e:any) => {
-        const username = e.target.value;
-        setUsername(username);
-    };
-
-    const onChangePassword = (e:any) => {
-        const password = e.target.value;
-        setPassword(password);
-    };
-
     const handleLogin = (formValue: { username: string; password: string }) => {
-        
-        const { username, password } = formValue;
-        setLoading(true);
-
-        AuthService.login(username, password)
+    const { username, password } = formValue;
+      AuthService.login(username, password)
 
     };
     const initialValues = {
@@ -58,18 +39,13 @@ const SignIn: React.FC<Props> = () => {
                                 <div className="input-group mb-3">
                                     <p className="auth__label">Tên đăng nhập</p>
                                     <input type="username" className="form-control" placeholder="Email"
-                                        name="username"
-                                        value={username}
-                                        onChange={onChangeUsername}
                                        
                                     />
                                 </div>
                                 <div className="input-group mb-3">
                                     <p className="auth__label">Mật khẩu</p>
                                     <input type="password" className="form-control" placeholder="password"
-                                        name="password"
-                                        value={password}
-                                        onChange={onChangePassword}
+
                                 
                                     />
                                     <p className="mb-2 text-muted"> <NavLink to="/auth/reset-password-1">Quên mật khẩu?</NavLink></p>
