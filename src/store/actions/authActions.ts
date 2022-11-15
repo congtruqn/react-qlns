@@ -1,7 +1,5 @@
-import { AnyAction, Dispatch } from 'redux';
-import FarmService from "../../services/farms/farm.service"
-import { RootState } from '../reducers/combine';
-type Product = {
+import { Dispatch } from 'redux';
+type Token = {
     access: string;
 };
 export function fetchTokenSuccess(comments: string) {
@@ -10,19 +8,17 @@ export function fetchTokenSuccess(comments: string) {
       access: comments,
     };
   }
-  const setProducts = (products: Product[]) => {
-    return {
-      type:"products/SET_PRODUCTS",
-      products: products
-    };
+export const fetchTokens = () => async (dispatch: Dispatch) => {
+    //dispatch(fetchCommentsRequest());
+  
+    try {
+      //const commentsUrl = 'http://jsonplaceholder.typicode.com/comments';
+      //const response = await axios.get(commentsUrl);
+      const accessTokens = localStorage.getItem("access");
+      dispatch(fetchTokenSuccess(accessTokens));
+    } catch (error) {
+      console.log('error', error);
+  
+      //dispatch(fetchCommentsFailure());
+    }
   };
-  export const loadProducts = () => {
-    return (dispatch: Dispatch<AnyAction>, getState: () => RootState) => {
-      setTimeout(() => {
-        dispatch(
-          setProducts([...getState().products.products, ...sampleProducts])
-        );
-      }, 500);
-    };
-  };
-

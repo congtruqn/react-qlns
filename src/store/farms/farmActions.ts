@@ -1,4 +1,9 @@
-import { Dispatch } from 'redux';
+import { AnyAction, Dispatch } from 'redux';
+import { RootState } from '../reducers/combine';
+import FarmService from "../../services/farms/farm.service";
+type Product = {
+  access: string;
+};
 export function fetchTokenSuccess(comments: string) {
     return {
       type: "GET_LIST_FARM",
@@ -16,4 +21,19 @@ export const fetchFarms = () =>  (dispatch: Dispatch) => {
       console.log('error', error);
       return Promise.reject();
     }
+};
+const setProducts = (products: Product[]) => {
+  return {
+    type:"products/SET_PRODUCTS",
+    products: products
+  };
+};
+export const loadProducts = () => {
+  return (dispatch: Dispatch<AnyAction>, getState: () => RootState) => {
+    setTimeout(() => {
+      dispatch(
+        setProducts([...getState().auths, ...sampleProducts])
+      );
+    }, 500);
+  };
 };
