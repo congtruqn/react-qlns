@@ -52,7 +52,7 @@ const ChoiseFarm: React.FC<Props> = () => {
                                         Kín
                                     </td>
                                     <td className='td'>
-                                        <i className="fas fa-map-marker-alt"></i>Cư Jut, Dăk Nông
+                                        <i className="fas fa-map-marker-alt"></i>{item.address}
                                     </td>
                                     <td className='td'>
                                         SL Vật nuôi : 412
