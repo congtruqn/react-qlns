@@ -3,27 +3,31 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 import FarmService from "../../services/farms/farm.service";
 import { fetchFarms } from "../../store/farms/farmActions"
-
-import { useDispatch } from 'react-redux'
+import { RootState } from "../../store";
+import { increment, decrement, changeIncrementAmount, } from "../../store/counterReducer";
+import { useSelector, useDispatch } from "react-redux";
 type Props = {}
 const ChoiseFarm: React.FC<Props> = () => {
-    const dispatch = useDispatch()
+    const count = useSelector((state: RootState) => state.counter.value);
+    const dispatch = useDispatch();
+ 
     const [loading, setLoading] = useState(false);
     const [farms, setFarms] = useState([]);
+
     useEffect(() => {
+        setLoading(true);
         async function fetchMyAPI() {
             let response = await FarmService.listFarms();
             setFarms(response.results)
             setLoading(false);
-            console.log(farms)
         }
         fetchMyAPI()
-        setLoading(true);
-        setTimeout(() => {
-            setLoading(false);
-        }, 500);
     }, [])
     
+    function handleChange(incrementAmountValue: string) {
+        dispatch(changeIncrementAmount(Number(incrementAmountValue)));
+      }
+
     return (
         <div className="choose-wrapper">
             {loading ? (
@@ -44,7 +48,7 @@ const ChoiseFarm: React.FC<Props> = () => {
                             <table className='table table-hover'>
                                 <tbody>
                                 { farms.map(item => (
-                                   <tr className='unread' key={item.id}>
+                                   <tr className='unread' key={item.id} onClick={() => handleChange('1')}>
                                     <td className='td'>
                                         <h6 className='"mb-1'>{item.name}</h6>
                                     </td>

@@ -10,7 +10,7 @@ export function fetchTokenSuccess(comments: string) {
       access: comments,
     };
   }
-export const fetchFarms = () =>  (dispatch: Dispatch) => {
+export const fetchFarms = () =>  (dispatch) => {
     console.log('111')
     try {
       const accessTokens = localStorage.getItem("access");
@@ -32,7 +32,7 @@ export const loadProducts = () => {
   return (dispatch: Dispatch<AnyAction>, getState: () => RootState) => {
     setTimeout(() => {
       dispatch(
-        setProducts([...getState().auths, ...sampleProducts])
+        setProducts([...getState().auths, {}])
       );
     }, 500);
   };
