@@ -44,9 +44,9 @@ const Sidebar = ({ fixed, theme, className, sidebarToggle, mobileView, ...props 
         </div>
       </div>
       <div className="nk-sidebar-content" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        <SimpleBar className="nk-sidebar-menu">
+        
             <Menu></Menu>
-        </SimpleBar>
+        
       </div>
     </div>
   );

@@ -1,17 +1,18 @@
-import React, { useState, useRef } from 'react';
-import { NavLink, Navigate, useNavigate, NavigateFunction } from 'react-router-dom';
+import React from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 import logo from '../../assets/images/logo_has_slogan.png';
 import AuthService from "../../services/auth/auth.service";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 type Props = {}
 const SignIn: React.FC<Props> = () => {
-    const form = useRef();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const handleLogin = (formValue: { username: string; password: string }) => {
-    const { username, password } = formValue;
-      AuthService.login(username, password)
-
+        
+        const { username, password } = formValue;
+        AuthService.login(username, password)
+        navigate("/choisefarm");
     };
     const initialValues = {
         username: "nguyen.np@exceltech.vn",

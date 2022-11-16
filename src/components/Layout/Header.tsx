@@ -1,49 +1,45 @@
-// Header.js
-import React, {Component} from 'react';
+import React from "react";
+import classNames from "classnames";
+//import Toggle from "../sidebar/Toggle";
+//import Logo from "../logo/Logo";
+//import News from "../news/News";
+//import User from "./dropdown/user/User";
 
-export default class Header extends Component {
-    render(){
-        return (
-            <header className="main-header">
-                <a href="#" className="logo">
-                    <span className="logo-mini"><b>A</b>LT</span>
-                    <span className="logo-lg"><b>Admin</b>LTE</span>
-                </a>
-                <nav className="navbar navbar-static-top">
-                    <a href="#" className="sidebar-toggle" data-toggle="push-menu" role="button">
-                        <span className="sr-only">Toggle navigation</span>
-                    </a>
-                    <div className="navbar-custom-menu">
-                        <ul className="nav navbar-nav">
-                            <li className="dropdown messages-menu">
-                                <a href="#" className="dropdown-toggle" data-toggle="dropdown">
-                                    <i className="fa fa-envelope-o"></i>
-                                    <span className="label label-success">4</span>
-                                </a>
-                                <ul className="dropdown-menu">
-                                    <li className="header">You have 4 messages</li>
-                                    <li>
-                                        <ul className="menu">
-                                            <li>
-                                                <a href="#">
-                                                    <div className="pull-left">
-                                                        <img src="img/user2-160x160.jpg" className="img-circle" alt="User Image" />
-                                                    </div>
-                                                    <h4>
-                                                        Support Team
-                                                        <small><i className="fa fa-clock-o"></i> 5 mins</small>
-                                                    </h4>
-                                                    <p>Why not buy a new awesome theme?</p>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </header>
-        )
-    }
-}
+
+const Header = ({ fixed, theme, className = null, setVisibility, ...props }) => {
+  const headerClass = classNames({
+    "nk-header": true,
+    "nk-header-fixed": fixed,
+    [`is-light`]: theme === "white",
+    [`is-${theme}`]: theme !== "white" && theme !== "light",
+    [`${className}`]: className,
+  });
+  return (
+    <div className={headerClass}>
+      <div className="container-fluid">
+        <div className="nk-header-wrap">
+          <div className="nk-menu-trigger d-xl-none ml-n1">
+   
+          </div>
+          <div className="nk-header-brand d-xl-none">
+           
+          </div>
+          <div className="nk-header-news d-none d-xl-block">
+            
+          </div>
+          <div className="nk-header-tools">
+            <ul className="nk-quick-nav">
+              <li className="user-dropdown"  onClick={() => setVisibility(false)}>
+                
+              </li>
+              <li className="notification-dropdown mr-n1"  onClick={() => setVisibility(false)}>
+                
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default Header;

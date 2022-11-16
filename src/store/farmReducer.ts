@@ -17,7 +17,6 @@ export const farmrSlice = createSlice({
     selectFarm: (state, action: PayloadAction<number>) => {
       state.isSelect = true
       state.selectFarm = action.payload
-      window.location.assign("/");
       console.log(state.selectFarm)
     },
   },

@@ -5,11 +5,12 @@ import FarmService from "../../services/farms/farm.service";
 import { RootState } from "../../store";
 import { selectFarm } from "../../store/farmReducer";
 import { useSelector, useDispatch } from "react-redux";
+import { NavLink, useNavigate } from 'react-router-dom';
 type Props = {}
 const ChoiseFarm: React.FC<Props> = () => {
     const count = useSelector((state: RootState) => state.counter.value);
     const dispatch = useDispatch();
- 
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [farms, setFarms] = useState([]);
 
@@ -19,12 +20,14 @@ const ChoiseFarm: React.FC<Props> = () => {
             let response = await FarmService.listFarms();
             setFarms(response.results)
             setLoading(false);
+            
         }
         fetchMyAPI()
     }, [])
     
     function handleChange(incrementAmountValue: any) {
         dispatch(selectFarm(incrementAmountValue));
+        navigate('/')
     }
 
     return (

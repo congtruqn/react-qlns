@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
 import Sidebar from "./SideBar";
+import Header from "./Header";
+
 import classNames from "classnames";
 type Props = {}
 const Dashboard: React.FC<Props> = () => {
@@ -33,7 +35,7 @@ const Dashboard: React.FC<Props> = () => {
             className={sidebarClass}
           />
           <div className='nk-wrap'>
-            
+          <Header sidebarToggle={toggleSidebar} setVisibility={setVisibility} fixed theme={themeState.header} />
           </div>
         </div>
     );
