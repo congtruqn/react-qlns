@@ -2,13 +2,11 @@ import React, { useState, useRef } from 'react';
 import { NavLink, Navigate, useNavigate, NavigateFunction } from 'react-router-dom';
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 import logo from '../../assets/images/logo_has_slogan.png';
-import { useTypedSelector } from '../../hooks/useTypeSelector';
 import AuthService from "../../services/auth/auth.service";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 type Props = {}
 const SignIn: React.FC<Props> = () => {
     const form = useRef();
-    const { user } = useTypedSelector((state) => state.auths);
     const dispatch = useDispatch();
     const handleLogin = (formValue: { username: string; password: string }) => {
     const { username, password } = formValue;

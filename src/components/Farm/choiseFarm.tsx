@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 import FarmService from "../../services/farms/farm.service";
-import { fetchFarms } from "../../store/farms/farmActions"
 import { RootState } from "../../store";
-import { increment, decrement, changeIncrementAmount, } from "../../store/counterReducer";
+import { selectFarm } from "../../store/farmReducer";
 import { useSelector, useDispatch } from "react-redux";
 type Props = {}
 const ChoiseFarm: React.FC<Props> = () => {
@@ -24,9 +23,9 @@ const ChoiseFarm: React.FC<Props> = () => {
         fetchMyAPI()
     }, [])
     
-    function handleChange(incrementAmountValue: string) {
-        dispatch(changeIncrementAmount(Number(incrementAmountValue)));
-      }
+    function handleChange(incrementAmountValue: any) {
+        dispatch(selectFarm(incrementAmountValue));
+    }
 
     return (
         <div className="choose-wrapper">
@@ -48,7 +47,7 @@ const ChoiseFarm: React.FC<Props> = () => {
                             <table className='table table-hover'>
                                 <tbody>
                                 { farms.map(item => (
-                                   <tr className='unread' key={item.id} onClick={() => handleChange('1')}>
+                                   <tr className='unread' key={item.id} onClick={() => handleChange(item)}>
                                     <td className='td'>
                                         <h6 className='"mb-1'>{item.name}</h6>
                                     </td>
