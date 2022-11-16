@@ -2,7 +2,7 @@
     background: #fff;
     overflow: hidden;
     transform: translateX(0);
-    width: 290px;
+    width: 210px;
     position: fixed;
     max-height: 100vh;
 }
@@ -49,7 +49,7 @@
 }
 
 .nk-menu-trigger {
-    margin-left: -0.25rem;
+    margin-left: 0.25rem;
     margin-right: 1.125rem;
 }
 .nk-quick-nav-icon {
@@ -88,7 +88,12 @@
     position: relative;
     flex-shrink: 0;
     text-align: center;
-    padding: 0 40px;
+    padding: 0 25px;
+}
+.nk-wrap {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 @media (min-width: 1200px){
     .d-xl-inline-flex {
@@ -104,4 +109,77 @@
         opacity: 0;
         transition: opacity 0.2s linear;
     }
+    .is-compact:not(.has-hover) .nk-menu-text {
+        opacity: 0;
+        transition: 0.4s linear;
+    }
+    .nk-sidebar + .nk-wrap, .nk-sidebar-overlay + .nk-wrap {
+        padding-left: 210px;
+    }
+    .nk-sidebar.is-compact + .nk-wrap {
+        padding-left: 74px;
+    }
+}
+.simplebar-content-wrapper, .simplebar-scroll-content {
+    direction: inherit;
+    box-sizing: border-box !important;
+    position: relative;
+    display: block;
+    height: 100%;
+    width: auto;
+    visibility: visible;
+    max-width: 100%;
+    max-height: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overflow: hidden scroll;
+}
+.nk-menu-item {
+    padding: 2px 0;
+}
+.nk-menu li a {
+    vertical-align: middle;
+    display: flex;
+    position: relative;
+    align-items: center;
+    transition: color 0.3s, background-color 0.3s;
+}
+.nk-menu li a:hover{
+    background: #ECF7ED;
+}
+.nk-menu-link {
+    padding: 0.725rem 40px 0.725rem 17px;
+    color: #838283;
+    font-family: Nunito, sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    line-height: 1.25rem;
+    text-decoration: none;
+}
+.nk-menu-icon {
+    font-weight: normal;
+    letter-spacing: normal;
+    width: 36px;
+    height: 36px;
+    line-height: 1;
+    flex-grow: 0;
+    flex-shrink: 0;
+    background: url(../../../../assets/images/menu1.png) center center no-repeat transparent;
+}
+.nk-menu-icon1{
+    background: url(../../../../assets/images/menu5.png) center center no-repeat transparent;
+}
+.nk-menu-icon2{
+    background: url(../../../../assets/images/menu4.png) center center no-repeat transparent;
+}
+.nk-menu-icon3{
+    background: url(../../../../assets/images/menu2.png) center center no-repeat transparent;
+}
+.nk-menu-text {
+    flex-grow: 1;
+    display: inline-block;
+    white-space: nowrap;
+    margin-left: 10px;
 }

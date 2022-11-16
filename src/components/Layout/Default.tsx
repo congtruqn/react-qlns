@@ -32,6 +32,9 @@ const Dashboard: React.FC<Props> = () => {
             theme={themeState.sidebar}
             className={sidebarClass}
           />
+          <div className='nk-wrap'>
+            
+          </div>
         </div>
     );
 
