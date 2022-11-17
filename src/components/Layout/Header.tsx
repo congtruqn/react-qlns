@@ -1,32 +1,28 @@
 import React from "react";
 import classNames from "classnames";
-import { DownOutlined } from '@ant-design/icons';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { UserOutlined,LogoutOutlined,SettingOutlined,BellOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Dropdown, Space } from 'antd';
+import AuthService from "../../services/auth/auth.service";
 
-//import Toggle from "../sidebar/Toggle";
-//import Logo from "../logo/Logo";
-//import News from "../news/News";
-//import User from "./dropdown/user/User";
-const items: MenuProps['items'] = [
+const Header = ({ fixed, theme, className = null, setVisibility, ...props }) => {
+  const navigate = useNavigate();
+  const handleLogout =async () => {
+    await AuthService.logout()
+    navigate("/signin");
+  };
+  const items: MenuProps['items'] = [
     {
-      label: <a href="https://www.antgroup.com">1st menu item</a>,
+      label: <a href="#"><SettingOutlined /> Thông tin tài khoản</a>,
       key: '0',
     },
     {
-      label: <a href="https://www.aliyun.com">2nd menu item</a>,
+      label: <a onClick={() => handleLogout()}><LogoutOutlined /> Đăng xuất</a>,
       key: '1',
-    },
-    {
-      type: 'divider',
-    },
-    {
-      label: '3rd menu item',
-      key: '3',
-    },
+    }
   ];
 
-const Header = ({ fixed, theme, className = null, setVisibility, ...props }) => {
   const headerClass = classNames({
     "nk-header": true,
     "nk-header-fixed": fixed,
@@ -49,19 +45,20 @@ const Header = ({ fixed, theme, className = null, setVisibility, ...props }) => 
           </div>
           <div className="nk-header-tools">
             <ul className="nk-quick-nav">
+              <li className="notification-dropdown mr-n1"  onClick={() => setVisibility(false)}>
+                <BellOutlined />
+              </li>
               <li className="user-dropdown"  onClick={() => setVisibility(false)}>
-                <Dropdown menu={{ items }} trigger={['click']}>
+                <Dropdown menu={{ items }} trigger={['click']} overlayClassName={'user_info_dropdow'}>
                     <a onClick={e => e.preventDefault()}>
                     <Space>
-                        Click me
-                        <DownOutlined />
+                        <div className="user-avatar sm"><UserOutlined /></div>
+                        
                     </Space>
                     </a>
                 </Dropdown>
               </li>
-              <li className="notification-dropdown mr-n1"  onClick={() => setVisibility(false)}>
-                
-              </li>
+
             </ul>
           </div>
         </div>

@@ -27,8 +27,9 @@ class AuthService {
       });
   }
 
-  logout() {
+  async logout():Promise<any>{
     localStorage.removeItem("access");
+    return 'ok'
   }
 
   register(username: string, email: string, password: string) {
