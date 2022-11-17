@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 import FarmService from "../../services/farms/farm.service";
 import { RootState } from "../../store";
-import { selectFarm } from "../../store/farmReducer";
+import { selectFarm ,fletchFarm} from "../../store/farmReducer";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useNavigate } from 'react-router-dom';
 type Props = {}
@@ -19,6 +19,7 @@ const ChoiseFarm: React.FC<Props> = () => {
         async function fetchMyAPI() {
             let response = await FarmService.listFarms();
             setFarms(response.results)
+            dispatch(fletchFarm(response.results));
             setLoading(false);
             
         }

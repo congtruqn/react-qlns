@@ -2,11 +2,26 @@ import React from "react";
 import classNames from "classnames";
 import { NavLink, useNavigate } from 'react-router-dom';
 import { UserOutlined,LogoutOutlined,SettingOutlined,BellOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
+import { MenuProps,Select  } from 'antd';
 import { Dropdown, Space } from 'antd';
 import AuthService from "../../services/auth/auth.service";
-
+import Avatar from "react-avatar";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 const Header = ({ fixed, theme, className = null, setVisibility, ...props }) => {
+  const listFarms = useSelector((state: RootState) => state.farm.listFarms);
+  const option = listFarms.map(function(element:any){
+    return {
+      value:element.id,
+      label:<><Avatar
+      className="mr-2"
+      name={element.name}
+      size="36"
+      round={true}
+    /> {element.name}</>
+    };
+});
+  console.log(listFarms)
   const navigate = useNavigate();
   const handleLogout =async () => {
     await AuthService.logout()
@@ -45,6 +60,15 @@ const Header = ({ fixed, theme, className = null, setVisibility, ...props }) => 
           </div>
           <div className="nk-header-tools">
             <ul className="nk-quick-nav">
+              <li className="select_farm">
+                <Select
+                  labelInValue
+                  //defaultValue={{ value: 'lucy', label: 'Lucy (101)' }}
+                  style={{ width: 300 }}
+                  options={option}
+                  popupClassName="test"
+                />
+              </li>              
               <li className="notification-dropdown mr-n1"  onClick={() => setVisibility(false)}>
                 <BellOutlined />
               </li>

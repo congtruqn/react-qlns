@@ -248,6 +248,18 @@ div {
 .user_info_dropdow{
     top: 60px !important;
 }
+.select_farm{
+    background: #41AD49;
+    min-width: 259.93px;
+    min-height: 45px;
+    border-radius: 6px;
+    margin-top: -5px;
+    padding: 0 5px !important;
+    .ant-select-selector{
+        background: none !important;
+        border: none !important;
+    }
+}
 @media (min-width: 1200px){
     .d-xl-inline-flex {
         display: inline-flex !important;
