@@ -251,7 +251,7 @@ div {
 .select_farm{
     background: #41AD49;
     min-width: 259.93px;
-    min-height: 45px;
+    min-height: 43px;
     border-radius: 6px;
     margin-top: -5px;
     padding: 0 5px !important;
@@ -259,6 +259,43 @@ div {
         background: none !important;
         border: none !important;
     }
+    .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+        
+        height: 43px !important;
+        padding: 3px 5px;
+        
+    }
+    .ant-select-selection-item{
+        color: #fff;
+        font-weight: 600;
+    }
+}
+.add__farm__modal{
+
+    .ant-modal{
+        height: 100vh !important;
+        width: 100vw !important;
+        max-width: calc(100vw - 17px) !important;
+        margin: 0;
+        top: 0;
+        .ant-modal-content{
+            min-height: 100vh !important;
+        }
+    }
+    .create_farm_center{
+        margin: auto;
+    }
+    .ant-modal-header{
+        text-align: center;
+        .ant-modal-title{
+            font-weight: 700;
+            font-size: 22px;
+        }
+    }
+
+}
+.ant-form-item{
+    //margin-bottom: 15px !important;
 }
 @media (min-width: 1200px){
     .d-xl-inline-flex {

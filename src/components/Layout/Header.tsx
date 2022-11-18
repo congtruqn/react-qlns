@@ -20,7 +20,21 @@ const Header = ({ fixed, theme, className = null, setVisibility, ...props }) => 
       round={true}
     /> {element.name}</>
     };
-});
+  });
+  type Farm = {
+    id:string,
+    name:string
+  }
+  const defaultFarms:Farm = useSelector((state: RootState) => state.farm.selectFarm);
+  const defaultFarm = {
+    value:defaultFarms.id,
+    label:<><Avatar
+    className="mr-2"
+    name={defaultFarms.name}
+    size="36"
+    round={true}
+  /> {defaultFarms.name}</>
+}
   console.log(listFarms)
   const navigate = useNavigate();
   const handleLogout =async () => {
@@ -63,7 +77,7 @@ const Header = ({ fixed, theme, className = null, setVisibility, ...props }) => 
               <li className="select_farm">
                 <Select
                   labelInValue
-                  //defaultValue={{ value: 'lucy', label: 'Lucy (101)' }}
+                  defaultValue={defaultFarm }
                   style={{ width: 300 }}
                   options={option}
                   popupClassName="test"

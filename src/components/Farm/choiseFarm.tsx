@@ -6,6 +6,8 @@ import { RootState } from "../../store";
 import { selectFarm ,fletchFarm} from "../../store/farmReducer";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useNavigate } from 'react-router-dom';
+import { Button, Modal } from 'antd';
+import CreateFarm from "../../components/Farm/createFarm"
 type Props = {}
 const ChoiseFarm: React.FC<Props> = () => {
     const count = useSelector((state: RootState) => state.counter.value);
@@ -13,7 +15,7 @@ const ChoiseFarm: React.FC<Props> = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [farms, setFarms] = useState([]);
-
+    const [open, setOpen] = useState(false);
     useEffect(() => {
         setLoading(true);
         async function fetchMyAPI() {
@@ -70,7 +72,7 @@ const ChoiseFarm: React.FC<Props> = () => {
                             </table>
                             <div>
                                 <div className='add__farm'>
-                                    <Link to={'#'}>+Thêm trại chăm nuôi</Link>
+                                    <Link to={'#'} onClick={() => setOpen(true)}>+Thêm trại chăn nuôi</Link>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +83,23 @@ const ChoiseFarm: React.FC<Props> = () => {
                             <p>Phiên bản 12.0.1 - Bản quyên thuộc về <strong>GREENFEED VIETNAM</strong></p>
                         </div>
                     </div>
-                </div></>
+                </div>
+
+                <Modal
+                    title="Tạo Trang Trại"
+                    centered
+                    width={'100vh'}
+                    open={open}
+                    onOk={() => setOpen(false)}
+                    onCancel={() => setOpen(false)}
+                    cancelText="Hủy"
+                    okText="Thêm"
+                    wrapClassName="add__farm__modal"
+                >
+                    <CreateFarm></CreateFarm>
+              </Modal>
+
+                </>
 
             )}
         </div>
