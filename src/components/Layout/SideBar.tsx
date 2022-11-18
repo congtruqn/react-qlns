@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import classNames from "classnames";
-import SimpleBar from "simplebar-react";
 import Logo from "./Logo";
 import Menu from "./Menu";
 import Toggle from "./Toggle";
