@@ -6,7 +6,10 @@ import { RootState } from "../../store";
 import { selectFarm ,fletchFarm} from "../../store/farmReducer";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useNavigate } from 'react-router-dom';
-import { Button, Modal,Row,Col, Form, Input } from 'antd';
+import { message, Upload ,Row,Col, Form, Input } from 'antd';
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import type { UploadChangeParam } from 'antd/es/upload';
+import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 type Props = {}
 const CreateFarm: React.FC<Props> = () => {
     const count = useSelector((state: RootState) => state.counter.value);
@@ -14,25 +17,64 @@ const CreateFarm: React.FC<Props> = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
+    const [imageUrl, setImageUrl] = useState<string>();
     useEffect(() => {
         //setLoading(true);
     }, [])
     
-    const layout = {
-        labelCol: { span: 8 },
-        wrapperCol: { span: 16 },
-    };
-
+    const beforeUpload = (file: RcFile) => {
+        const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+        if (!isJpgOrPng) {
+          message.error('You can only upload JPG/PNG file!');
+        }
+        const isLt2M = file.size / 1024 / 1024 < 2;
+        if (!isLt2M) {
+          message.error('Image must smaller than 2MB!');
+        }
+        return isJpgOrPng && isLt2M;
+      };
+    const uploadButton = (
+        <div>
+          {loading ? <LoadingOutlined /> : <PlusOutlined />}
+          <div style={{ marginTop: 8 }}>Upload</div>
+        </div>
+    )
+    const getBase64 = (img: RcFile, callback: (url: string) => void) => {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => callback(reader.result as string));
+        reader.readAsDataURL(img);
+      };
+    const handleChange = (info: UploadChangeParam<UploadFile>) => {
+        if (info.file.status === 'uploading') {
+          setLoading(true);
+          return;
+        }
+        if (info.file.status === 'done') {
+          // Get this url from response in real world.
+          getBase64(info.file.originFileObj as RcFile, url => {
+            setLoading(false);
+            setImageUrl(url);
+          });
+        }
+      };
     return (
         <div className="create_form">
-            {loading ? (
-                <div className="loader-container">
-                    <div className="spinner"></div>
-                </div>
-            ) : (
-            <>
+           
             <div className="ant-col-12 create_farm_center">
                 <Row>
+                    <Col span={24}>
+                        <Upload
+                            name="avatar"
+                            listType="picture-card"
+                            className="avatar-uploader"
+                            showUploadList={false}
+                            
+                            beforeUpload={beforeUpload}
+                            onChange={handleChange}
+                            >
+                            {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+                        </Upload>
+                    </Col>                    
                     <Col span={24}>
                         <Col span={22}>
                             <Form.Item
@@ -232,8 +274,8 @@ const CreateFarm: React.FC<Props> = () => {
                 </Row>
                 
             </div>
-            </>
-            )}
+            
+            
         </div>
     );
 

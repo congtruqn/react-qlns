@@ -4,9 +4,7 @@ import './assets/scss/style.scss'
 import SignIn from "./components/auth/SignIn";
 import ChoiseFarm from "./components/Farm/choiseFarm";
 import Dashboard from "./components/Layout/Default";
-
 import {PrivateRoute} from "./routes/protected";
-
 class App extends Component {
   render() {
     return (

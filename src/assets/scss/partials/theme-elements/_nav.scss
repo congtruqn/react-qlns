@@ -274,8 +274,8 @@ div {
 
     .ant-modal{
         height: 100vh !important;
-        width: 100vw !important;
-        max-width: calc(100vw - 17px) !important;
+        width: 100% !important;
+        max-width: 100% !important;
         margin: 0;
         top: 0;
         .ant-modal-content{
