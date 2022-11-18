@@ -16,6 +16,16 @@ const ChoiseFarm: React.FC<Props> = () => {
     const [loading, setLoading] = useState(false);
     const [farms, setFarms] = useState([]);
     const [open, setOpen] = useState(false);
+    interface Values {
+        title: string;
+        description: string;
+        modifier: string;
+      }
+    interface CollectionCreateFormProps {
+        open: boolean;
+        onCreate: (values: Values) => void;
+        onCancel: () => void;
+      }
     useEffect(() => {
         setLoading(true);
         async function fetchMyAPI() {
@@ -32,7 +42,10 @@ const ChoiseFarm: React.FC<Props> = () => {
         dispatch(selectFarm(incrementAmountValue));
         navigate('/')
     }
-
+    const onCreate = (values: any) => {
+        console.log('Received values of form: ', values);
+        setOpen(false);
+      };
     return (
         <div className="choose-wrapper">
             {loading ? (
@@ -85,20 +98,12 @@ const ChoiseFarm: React.FC<Props> = () => {
                     </div>
                 </div>
 
-                <Modal
-                    title="Tạo Trang Trại"
-                    centered
-                    width={'100vh'}
-                    open={open}
-                    onOk={() => setOpen(false)}
-                    onCancel={() => setOpen(false)}
-                    cancelText="Hủy"
-                    okText="Thêm"
-                    wrapClassName="add__farm__modal"
-                >
-                    <CreateFarm></CreateFarm>
-              </Modal>
 
+              <CreateFarm         open={open}
+        onCreate={onCreate}
+        onCancel={() => {
+          setOpen(false);
+        }}></CreateFarm>
                 </>
 
             )}
