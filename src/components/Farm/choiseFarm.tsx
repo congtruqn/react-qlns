@@ -5,12 +5,12 @@ import FarmService from "../../services/farms/farm.service";
 import { RootState } from "../../store";
 import { selectFarm ,fletchFarm} from "../../store/farmReducer";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button, Modal } from 'antd';
+import type { RcFile } from 'antd/es/upload/interface';
 import CreateFarm from "../../components/Farm/createFarm"
 type Props = {}
 const ChoiseFarm: React.FC<Props> = () => {
-    const count = useSelector((state: RootState) => state.counter.value);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
@@ -20,6 +20,7 @@ const ChoiseFarm: React.FC<Props> = () => {
         title: string;
         description: string;
         modifier: string;
+        file:any
       }
     interface CollectionCreateFormProps {
         open: boolean;
@@ -43,7 +44,12 @@ const ChoiseFarm: React.FC<Props> = () => {
         navigate('/')
     }
     const onCreate = (values: any) => {
-        console.log('Received values of form: ', values);
+        const formData = new FormData();
+        formData.append('file', values.file as RcFile);
+        fetch('https://api-qlns.unibiz.io/farm-service/uploadfiles', {
+            method: 'POST',
+            body: formData,
+        })
         setOpen(false);
       };
     return (
@@ -99,12 +105,13 @@ const ChoiseFarm: React.FC<Props> = () => {
                 </div>
 
 
-              <CreateFarm         open={open}
-        onCreate={onCreate}
-        onCancel={() => {
-          setOpen(false);
-        }}></CreateFarm>
-                </>
+            <CreateFarm 
+                open={open}
+                onCreate={onCreate}
+                onCancel={() => {
+                setOpen(false);
+                }}></CreateFarm>
+            </>
 
             )}
         </div>

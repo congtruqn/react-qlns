@@ -10,8 +10,8 @@ export interface CounterState {
 }
 
 const initialState: CounterState = {
-  selectFarm: JSON.parse(localStorage.getItem("selectfarm")) ? JSON.parse(localStorage.getItem("selectfarm")):{},
-  listFarms:JSON.parse(localStorage.getItem("listfarms")) ? JSON.parse(localStorage.getItem("listfarms")):[],
+  selectFarm: {id:'',name:''},
+  listFarms:[],
   isSelect : false
 }
 
@@ -26,12 +26,10 @@ export const farmrSlice = createSlice({
         name:action.payload.name
       }
       state.selectFarm = user
-      localStorage.setItem("selectfarm", JSON.stringify(user));
     },
     fletchFarm: (state, action: PayloadAction<[]>) => {
       state.isSelect = true
       state.listFarms = action.payload;
-      localStorage.setItem("listfarms", JSON.stringify(action.payload));
     },
   },
 })

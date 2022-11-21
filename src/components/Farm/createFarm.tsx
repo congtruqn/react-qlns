@@ -15,17 +15,16 @@ interface Values {
     title: string;
     description: string;
     modifier: string;
-  }
-  
-  interface CollectionCreateFormProps {
+    file:any
+}
+interface CollectionCreateFormProps {
     open: boolean;
     onCreate: (values: Values) => void;
     onCancel: () => void;
-  }
+}
 const CreateFarm: React.FC<CollectionCreateFormProps> = ({open,
     onCreate,
     onCancel}) => {
-    const count = useSelector((state: RootState) => state.counter.value);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
@@ -34,71 +33,61 @@ const CreateFarm: React.FC<CollectionCreateFormProps> = ({open,
     useEffect(() => {
         //setLoading(true);
     }, [])
-    
-    const beforeUpload = (file: RcFile) => {
-        console.log(file)
-        const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-        if (!isJpgOrPng) {
-          message.error('You can only upload JPG/PNG file!');
-        }
-        const isLt2M = file.size / 1024 / 1024 < 2;
-        if (!isLt2M) {
-          message.error('Image must smaller than 2MB!');
-        }
-        return isJpgOrPng && isLt2M;
-      };
     const uploadButton = (
         <div>
           {loading ? <LoadingOutlined /> : <PlusOutlined />}
           <div style={{ marginTop: 8 }}>Upload</div>
         </div>
     )
-    const getBase64 = (img: any, callback: (url: string) => void) => {
-        const reader = new FileReader();
-        reader.addEventListener('load', () => callback(reader.result as string));
-       
-    };
     const props: UploadProps = {
         beforeUpload: file => {
-            setFileList(file);
+            console.log(file)
+            let reader = new FileReader();
+            reader.onload = r => {
+                setImageUrl(r.target.result.toString())
+             };
+            reader.readAsDataURL(file);
+            setFileList(file)
+            return false;
         },
-    };  
-
-    const handleChange = () => 
-    {
-        getBase64(fileList , url => {
-            setLoading(false);
-            setImageUrl(url);
-        });
-    }
+    };
     return (
-        
+  
     <Modal
         title="Tạo Trang Trại"
         centered
         width={'100vh'}
         open={open}
-        onOk={() => onCreate({    title: "string",
+        onOk={() => onCreate({   
+            title: "string",
             description: "string",
-            modifier: "string"})}
+            modifier: "string",
+            file:fileList
+        })}
         onCancel={onCancel}
         cancelText="Hủy"
         okText="Thêm"
         wrapClassName="add__farm__modal"
     >
         <div className="create_form">
-           
+        <Form
+            name="basic"
+            labelCol={{ span: 24 }}
+            wrapperCol={{ span: 16 }}
+            initialValues={{ remember: true }}
+            
+            autoComplete="off"
+            >
            <div className="ant-col-12 create_farm_center">
                <Row>
                    <Col span={24}>
                        <Upload
-                           {...props}
-                           name="avatar"
-                           listType="picture-card"
-                           className="avatar-uploader"
-                           showUploadList={false}
-                           beforeUpload={beforeUpload}
-                           onChange={handleChange}
+                            {...props}
+                            action=""
+                            name="avatar"
+                            listType="picture-card"
+                            className="avatar-uploader"
+                            showUploadList={false}
                            >
                            {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
                        </Upload>
@@ -302,7 +291,7 @@ const CreateFarm: React.FC<CollectionCreateFormProps> = ({open,
                </Row>
                
            </div>
-           
+           </Form>
            
        </div>        
   </Modal>
