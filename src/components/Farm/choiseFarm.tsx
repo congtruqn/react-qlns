@@ -44,9 +44,10 @@ const ChoiseFarm: React.FC<Props> = () => {
         navigate('/')
     }
     const onCreate = (values: any) => {
+        console.log(values)
         const formData = new FormData();
         formData.append('file', values.file as RcFile);
-        fetch('https://api-qlns.unibiz.io/farm-service/uploadfiles', {
+        fetch('https://api-qlns.unibiz.io/farm-service/farms', {
             method: 'POST',
             body: formData,
         })
