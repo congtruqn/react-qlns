@@ -5,7 +5,7 @@ type Farm = {
 }
 export interface CounterState {
   selectFarm: Farm
-  listFarms:[]
+  listFarms:any[]
   isSelect: boolean
 }
 
@@ -27,7 +27,7 @@ export const farmrSlice = createSlice({
       }
       state.selectFarm = user
     },
-    fletchFarm: (state, action: PayloadAction<[]>) => {
+    fletchFarm: (state, action: PayloadAction<any[]>) => {
       state.isSelect = true
       state.listFarms = action.payload;
     },

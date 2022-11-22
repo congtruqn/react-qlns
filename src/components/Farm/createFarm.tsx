@@ -61,9 +61,9 @@ const CreateFarm: React.FC<CollectionCreateFormProps> = ({ open,
                     form
                         .validateFields()
                         .then(values => {
-                            form.resetFields();
                             values.file = fileList
                             onCreate(values);
+                            form.resetFields();
                         })
                         .catch(info => {
                             console.log('Validate Failed:', info);

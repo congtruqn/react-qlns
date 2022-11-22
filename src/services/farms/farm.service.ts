@@ -1,14 +1,21 @@
 
 import axiosInstance from '../../config/http/HttpInterceptor'
-const API_URL = "https://api-qlns.unibiz.io/farm-service/farms";
+import { FARM_API } from "../../config/index";
 
 class FarmService {
   async listFarms():Promise<any> {
     return await axiosInstance
-      .get(API_URL)
+      .get(FARM_API+'/farms')
       .then(response => {
         return response.data.data;
       });
-  }
+  };
+  async createFarms(data:any):Promise<any> {
+    return await axiosInstance
+      .post(FARM_API+'/farms',data)
+      .then(response => {
+        return response.data.data;
+      });
+  };
 }
 export default new FarmService();
