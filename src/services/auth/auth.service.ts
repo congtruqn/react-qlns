@@ -1,7 +1,7 @@
 
 import axiosInstance from '../../config/http/HttpInterceptor'
 import axios from "axios";
-
+import jwt_decode from "jwt-decode";
 const API_URL = "https://api-admin-et.unibiz.io/";
 
 interface Ilogin  {
@@ -9,7 +9,6 @@ interface Ilogin  {
 }
 
 class AuthService {
-  
   async login(username: string, password: string):Promise<Ilogin> {
     return axios
       .post(API_URL + "login/", {
@@ -20,18 +19,16 @@ class AuthService {
         
         if (response.data?.data?.access_token) {
           localStorage.setItem("access", JSON.stringify(response.data.data.access_token));
-          localStorage.setItem("refress", JSON.stringify(response.data.data.refress_token));
+          localStorage.setItem("refresh", JSON.stringify(response.data.data.refresh_token));
         }
-        
         return response.data;
       });
   }
-
   async logout():Promise<any>{
     localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
     return 'ok'
   }
-
   register(username: string, email: string, password: string) {
     return axios.post(API_URL + "signup", {
       username,

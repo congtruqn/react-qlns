@@ -1,33 +1,35 @@
 import axios from 'axios';
+import { AUTH_API } from "../index"
+const axiosInstance = axios.create()
 
-const axiosInstance = axios.create({
-    timeout: 5000,
-    headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('access_token'),
-        'Content-Type': 'application/json',
-        accept: 'application/json',
+axiosInstance.interceptors.request.use(
+    async config => {
+      const access_token = localStorage.getItem("access")
+      config.headers = { 
+        'Authorization': `Bearer ${access_token}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+      return config;
     },
-    params: {}
+    error => {
+      Promise.reject(error)
+});
+axiosInstance.interceptors.response.use((response:any) => {
+    return response
+  }, async function (error) {
+    const originalRequest = error.config;
+    if (error.response.status === 403 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      const access_token = await refreshAccessToken();            
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token;
+      return axiosInstance(originalRequest);
+    }
+    return Promise.reject(error);
 })
 
-axiosInstance.interceptors.request.use(function (config) {
-    return config;
-}, function (error) {
-    return Promise.reject(error);
-});
-
-
-axiosInstance.interceptors.response.use(function (response) {
-    return response;
-}, function (error) {
-    return Promise.reject(error);
-});
-
-export const addToken = (token: string) => {
-    axiosInstance.defaults.headers.common.authorization = `Bearer ${token}`;
-}
-
-export const removeToken = () => {
-    delete axiosInstance.defaults.headers.common.authorization;
+export const refreshAccessToken = async () => {
+    const refreshToken = window.localStorage.getItem('refresh')
+    return await axiosInstance.post(AUTH_API+`/oauth/api-token-refresh`,{refresh: refreshToken});
 }
 export default axiosInstance;
