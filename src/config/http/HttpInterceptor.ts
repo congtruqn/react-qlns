@@ -1,14 +1,12 @@
 import axios from 'axios';
 import { AUTH_API } from "../index"
 const axiosInstance = axios.create()
-
 axiosInstance.interceptors.request.use(
     async config => {
       const access_token = localStorage.getItem("access")
       config.headers = { 
         'Authorization': `Bearer ${access_token}`,
-        'Accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/json'
       }
       return config;
     },
@@ -24,6 +22,8 @@ axiosInstance.interceptors.response.use((response:any) => {
       const access_token = await refreshAccessToken();            
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token;
       return axiosInstance(originalRequest);
+    }
+    else if(error.response.status === 500 && !originalRequest._retry){
     }
     return Promise.reject(error);
 })

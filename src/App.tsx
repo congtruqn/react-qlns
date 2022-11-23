@@ -11,7 +11,7 @@ class App extends Component {
         <Routes>
           <Route path={`/signin`} element={<SignIn />}></Route>
           <Route path={`/choisefarm`} element={<PrivateRoute ><ChoiseFarm /></PrivateRoute>}></Route>
-          <Route path={`/`} element={<PrivateRoute ><Dashboard /></PrivateRoute>}></Route>
+          <Route path={`/*`} element={<PrivateRoute ><Dashboard /></PrivateRoute>}></Route>
         </Routes>
     );
   }

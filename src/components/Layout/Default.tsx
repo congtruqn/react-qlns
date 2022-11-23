@@ -1,8 +1,9 @@
 import React, { useState, useRef } from 'react';
 import Sidebar from "./SideBar";
 import Header from "./Header";
-
+import { Route, Routes } from 'react-router-dom'
 import classNames from "classnames";
+import SignIn from "../../components/auth/SignIn";
 type Props = {}
 const Dashboard: React.FC<Props> = () => {
     const [mobileView, setMobileView] = useState();
@@ -35,8 +36,14 @@ const Dashboard: React.FC<Props> = () => {
             className={sidebarClass}
           />
           <div className='nk-wrap'>
-          <Header sidebarToggle={toggleSidebar} setVisibility={setVisibility} fixed theme={themeState.header} />
+            <Header sidebarToggle={toggleSidebar} setVisibility={setVisibility} fixed theme={themeState.header} />
+            <div>
+              <Routes>
+                <Route path={`/farmprofille`} element={<SignIn />}></Route>
+              </Routes>
+            </div>
           </div>
+
         </div>
     );
 

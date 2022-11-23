@@ -3,7 +3,7 @@ import { RootState } from "../../store";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useNavigate } from 'react-router-dom';
 import { message, Upload, Row, Col, Form, Input, Modal, DatePicker } from 'antd';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import { LoadingOutlined, FileImageOutlined } from '@ant-design/icons';
 
 import type { UploadProps } from 'antd/es/upload/interface';
 type Props = {}
@@ -15,7 +15,7 @@ interface Values {
 }
 interface CollectionCreateFormProps {
     open: boolean;
-    onCreate: (values: Values) => void;
+    onCreate: (values: any) => void;
     onCancel: () => void;
 }
 const CreateFarm: React.FC<CollectionCreateFormProps> = ({ open,
@@ -26,19 +26,21 @@ const CreateFarm: React.FC<CollectionCreateFormProps> = ({ open,
     const [loading, setLoading] = useState(false);
     const [imageUrl, setImageUrl] = useState<string>();
     const [fileList, setFileList] = useState(null);
+    const [imageName, setimageName] = useState(null);
     const [form] = Form.useForm();
     useEffect(() => {
         //setLoading(true);
     }, [])
     const uploadButton = (
         <div>
-            {loading ? <LoadingOutlined /> : <PlusOutlined />}
+            {loading ? <LoadingOutlined /> : <FileImageOutlined />}
             <div style={{ marginTop: 8 }}>Upload</div>
         </div>
     )
     const props: UploadProps = {
         beforeUpload: file => {
             console.log(file)
+            setimageName(file.name)
             let reader = new FileReader();
             reader.onload = r => {
                 setImageUrl(r.target.result.toString())
@@ -62,6 +64,7 @@ const CreateFarm: React.FC<CollectionCreateFormProps> = ({ open,
                         .validateFields()
                         .then(values => {
                             values.file = fileList
+                            values.image = imageName
                             onCreate(values);
                             form.resetFields();
                         })

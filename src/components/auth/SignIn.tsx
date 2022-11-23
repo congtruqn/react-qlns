@@ -9,7 +9,6 @@ const SignIn: React.FC<Props> = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleLogin = (formValue: { username: string; password: string }) => {
-        
         const { username, password } = formValue;
         AuthService.login(username, password)
         navigate("/choisefarm");

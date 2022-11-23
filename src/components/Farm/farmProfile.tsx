@@ -7,9 +7,9 @@ import { selectFarm ,fletchFarm} from "../../store/farmReducer";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Modal } from 'antd';
 import type { RcFile } from 'antd/es/upload/interface';
-import CreateFarm from "../../components/Farm/createFarm"
+import CreateFarm from "./createFarm"
 type Props = {}
-const ChoiseFarm: React.FC<Props> = () => {
+const FarmProfile: React.FC<Props> = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
@@ -31,32 +31,6 @@ const ChoiseFarm: React.FC<Props> = () => {
         dispatch(selectFarm(incrementAmountValue));
         navigate('/')
     }
-    const onCreate = async (values: any) => {
-        console.log(values)
-        const formData = new FormData();
-        formData.append('file', values.file as RcFile);
-        setOpen(false);
-        let response = await FarmService.createFarms(JSON.stringify({
-            name:values.name,
-            farm_code: values.farm_code,
-            start_date: values.start_date.toISOString(),
-            region: values.region,
-            address:values.address,
-            acreage: 0,
-            farm_type: 0,
-            farm_size: parseInt(values.farm_size),
-            contact_person: values.contact_person,
-            contact_phone: values.contact_phone,
-            image: values.image,
-            business_unit: 0,
-            longitude: 0,
-            latitude: 0,
-            base64_image: values.file,
-        }));
-        setFarms([response.farm,...farms])
-        let farm = [response.farm,...farms]
-        dispatch(fletchFarm(farm));
-      };
     return (
         <div className="choose-wrapper">
             {loading ? (
@@ -108,14 +82,6 @@ const ChoiseFarm: React.FC<Props> = () => {
                         </div>
                     </div>
                 </div>
-
-
-            <CreateFarm 
-                open={open}
-                onCreate={onCreate}
-                onCancel={() => {
-                setOpen(false);
-                }}></CreateFarm>
             </>
 
             )}
@@ -123,4 +89,4 @@ const ChoiseFarm: React.FC<Props> = () => {
     );
 
 }
-export default ChoiseFarm;
+export default FarmProfile;
