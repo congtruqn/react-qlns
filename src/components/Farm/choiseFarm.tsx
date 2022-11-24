@@ -3,7 +3,7 @@ import { Link ,useNavigate} from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 import FarmService from "../../services/farms/farm.service";
 import { RootState } from "../../store";
-import { selectFarm ,fletchFarm} from "../../store/farmReducer";
+import { chooseFarm ,fletchFarm} from "../../store/farmReducer";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Modal } from 'antd';
 import type { RcFile } from 'antd/es/upload/interface';
@@ -28,7 +28,7 @@ const ChoiseFarm: React.FC<Props> = () => {
     }, [])
     
     function handleChange(incrementAmountValue: any) {
-        dispatch(selectFarm(incrementAmountValue));
+        dispatch(chooseFarm(incrementAmountValue));
         navigate('/')
     }
     const onCreate = async (values: any) => {

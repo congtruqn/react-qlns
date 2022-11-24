@@ -8,19 +8,28 @@ import AuthService from "../../services/auth/auth.service";
 import Avatar from "react-avatar";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+
 const Header = ({ fixed, theme, className = null, setVisibility, ...props }) => {
+  const navigate = useNavigate();
+  var option = []
   const listFarms = useSelector((state: RootState) => state.farm.listFarms);
-  const option = listFarms.map(function(element:any){
-    return {
-      value:element.id,
-      label:<><Avatar
-      className="mr-2"
-      name={element.name}
-      size="36"
-      round={true}
-    /> {element.name}</>
-    };
-  });
+  if(listFarms){
+    option = listFarms.map(function(element:any){
+      return {
+        value:element.id,
+        label:<><Avatar
+        className="mr-2"
+        name={element.name}
+        size="36"
+        round={true}
+      /> {element.name}</>
+      };
+    });   
+  }
+  else{
+    navigate("/choisefarm");
+  }
+
   type Farm = {
     id:string,
     name:string
@@ -36,7 +45,6 @@ const Header = ({ fixed, theme, className = null, setVisibility, ...props }) => 
   /> {defaultFarms.name}</>
 }
   console.log(listFarms)
-  const navigate = useNavigate();
   const handleLogout =async () => {
     await AuthService.logout()
     navigate("/signin");

@@ -39,7 +39,7 @@ const Dashboard: React.FC<Props> = () => {
             <Header sidebarToggle={toggleSidebar} setVisibility={setVisibility} fixed theme={themeState.header} />
             
             <Routes>
-                <Route path={`/farmprofille`} element={<FarmProfile />}></Route>
+                <Route path={`/farmprofille/*`} element={<FarmProfile />}></Route>
             </Routes>
             
           </div>

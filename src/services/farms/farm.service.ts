@@ -10,6 +10,13 @@ class FarmService {
         return response.data.data;
       });
   };
+  async getFarmInfo(farmId):Promise<any> {
+    return await axiosInstance
+      .get(FARM_API+'/farms/'+farmId)
+      .then(response => {
+        return response.data.data;
+      });
+  };
   async createFarms(data:any):Promise<any> {
     return await axiosInstance
       .post(FARM_API+'/farms',data)

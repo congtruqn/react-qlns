@@ -19,7 +19,7 @@ export const farmrSlice = createSlice({
   name: 'farm',
   initialState,
   reducers: {
-    selectFarm: (state, action: PayloadAction<Farm>) => {
+    chooseFarm: (state, action: PayloadAction<Farm>) => {
       state.isSelect = true
       let user = {
         id:action.payload.id,
@@ -34,6 +34,6 @@ export const farmrSlice = createSlice({
   },
 })
 
-export const { selectFarm ,fletchFarm} = farmrSlice.actions
+export const { chooseFarm ,fletchFarm} = farmrSlice.actions
 
 export default farmrSlice.reducer

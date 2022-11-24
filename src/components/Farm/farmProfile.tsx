@@ -3,13 +3,13 @@ import { Link ,useNavigate} from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 import FarmService from "../../services/farms/farm.service";
 import { RootState } from "../../store";
-import { selectFarm ,fletchFarm} from "../../store/farmReducer";
+import { chooseFarm ,fletchFarm} from "../../store/farmReducer";
 import { useSelector, useDispatch } from "react-redux";
 import { message, Upload, Row, Col, Form, Input, Modal, DatePicker } from 'antd';
 import { ContainerOutlined,AimOutlined,BarChartOutlined,PartitionOutlined} from '@ant-design/icons';
 import { NavLink } from 'react-router-dom'
-import type { RcFile } from 'antd/es/upload/interface';
-import CreateFarm from "./createFarm"
+import { Route, Routes } from 'react-router-dom'
+import FarmInfo from "./farmInfo"
 type Props = {}
 const FarmProfile: React.FC<Props> = () => {
     const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const FarmProfile: React.FC<Props> = () => {
     }, [])
     
     function handleChange(incrementAmountValue: any) {
-        dispatch(selectFarm(incrementAmountValue));
+        dispatch(chooseFarm(incrementAmountValue));
         navigate('/')
     }
     return (
@@ -108,7 +108,7 @@ const FarmProfile: React.FC<Props> = () => {
                                 <div className='farm__profile__left'>
                                 <ul>
                                                 <li>
-                                                    <NavLink  className="child_menu_link" to="#" style={({ isActive }) => ({})}>
+                                                    <NavLink  className="child_menu_link" to="/farmprofille/farmpro" style={({ isActive }) => ({})}>
                                                         <span> Hồ sơ</span>
                                                     </NavLink>
                                                 </li>
@@ -121,7 +121,9 @@ const FarmProfile: React.FC<Props> = () => {
                                             </ul>
                                 </div>
                                 <div className='farm__profile__center'>
-
+                                    <Routes>
+                                        <Route path={`/farmpro`} element={<FarmInfo />}></Route>
+                                    </Routes>
                                 </div>
                         </div>
                     </div>
