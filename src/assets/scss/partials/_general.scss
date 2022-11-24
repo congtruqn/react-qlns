@@ -25,7 +25,7 @@ a {
         text-decoration: none;
     }
 }
-
+p,
 h1,
 h2,
 h3,
@@ -34,6 +34,7 @@ h5,
 h6 {
     color: $theme-heading-color;
     font-weight: 400;
+    font-family: SVN-Gotham !important;
 }
 
 h1 {
@@ -866,34 +867,30 @@ p.text-muted {
     font-weight: 400;
     src: url("https://fonts.gstatic.com/s/materialicons/v41/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2") format('woff2');
 }
-
-.material-icons {
-    font-family: 'SVN-Gotham';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;
-    line-height: 1;
-    letter-spacing: normal;
-    text-transform: none;
-    display: inline-block;
-    white-space: nowrap;
-    word-wrap: normal;
-    direction: ltr;
-    -webkit-font-feature-settings: 'liga';
-    -webkit-font-smoothing: antialiased;
-}
 /* material icon for material datetime picker */
 .farm__profile_header{
     background:#fff;
-    padding: 24px;
+    min-height: 180px;
+    .farm__profile_header__top{
+        padding: 24px;
+        img{
+            height: 54px;
+            width: 54px;
+            border: 7px solid rgba(173, 172, 172, 0.2);
+            filter: drop-shadow(2.93333px 2.93333px 14.6667px rgba(91, 91, 91, 0.28));
+            border-radius: 50%;
+            margin: -7px;
+        }
+    }
 }
 .farm__profile_header__nav{
+    padding: 10px;
     ul{
         li{
             list-style: none;
             display: inline;
             .farm-menu-link{
-                padding: 12px 20px;
+                padding: 8px 20px 12px 20px;
                 color: #838283;
                 font-family: SVN-Gotham,Arial, serif;
                 font-weight: 400;
@@ -935,6 +932,46 @@ p.text-muted {
             font-size: 16px;
             line-height: 22px;
             color: #0A6836;
+        }
+    }
+}
+.farm__profile__center{
+    padding-left: 198px;
+    height: 100%;
+    .farm__profile_{
+        padding: 10px;
+        display: flex;
+        .farm__profile__info{
+            background: #fff;
+            padding: 24px 48px;
+            display: flex;
+            p{
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 152%;
+                color: #525560;
+            }
+            h4{
+                font-style: normal;
+                font-weight: 450;
+                font-size: 18px;
+                line-height: 156%;
+            }
+            .ant-col{
+                margin: 0px 0 20px 0;
+            }
+            .title{
+                font-style: normal;
+                font-weight: 700;
+                font-size: 24px;
+                line-height: 132%;
+                letter-spacing: -0.012em;
+                color: #312F30;
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+            }
         }
     }
 }

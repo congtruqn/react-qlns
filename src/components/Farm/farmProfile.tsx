@@ -50,7 +50,7 @@ const FarmProfile: React.FC<Props> = () => {
                                         <Col lg={16} xs={14}>
                                             <Row>
                                                 <Col lg={3} xs={12}>
-                                                    <img src='http://139.59.245.254:8081/files/farms/Trai-Cu-Jut.png'></img>
+                                                    <img src='http://139.59.245.254:8081/files/farms/pexels-photo-235725.jpeg'></img>
                                                 </Col>
                                                 <Col lg={6} xs={12}>
                                                     <h4>Trang trại Cư Jut</h4>
