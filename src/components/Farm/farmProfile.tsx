@@ -34,7 +34,7 @@ const FarmProfile: React.FC<Props> = () => {
         navigate('/')
     }
     return (
-        <div className="">
+        <div className="farm__profile">
             {loading ? (
                 <div className="loader-container">
                     <div className="spinner"></div>
@@ -101,9 +101,29 @@ const FarmProfile: React.FC<Props> = () => {
                                         </div>
                                     </Col>
                                 </Row>
-                            </div>  
+                            </div> 
+                            
                         </div>
-        
+                        <div className='farm__profile__content'>
+                                <div className='farm__profile__left'>
+                                <ul>
+                                                <li>
+                                                    <NavLink  className="child_menu_link" to="#" style={({ isActive }) => ({})}>
+                                                        <span> Hồ sơ</span>
+                                                    </NavLink>
+                                                </li>
+                                                <li>
+                                                    <NavLink  className="child_menu_link" to="#" style={({ isActive }) => ({})}>
+                                                        <span>Tham số trại</span>
+                                                    </NavLink>
+                                                </li>
+                                                                                                                                     
+                                            </ul>
+                                </div>
+                                <div className='farm__profile__center'>
+
+                                </div>
+                        </div>
                     </div>
                 </>
 

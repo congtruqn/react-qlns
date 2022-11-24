@@ -895,12 +895,10 @@ p.text-muted {
             .farm-menu-link{
                 padding: 12px 20px;
                 color: #838283;
-                font-family: 'SVN-Gotham';
-                font-weight: 500;
-                font-size: 14px;
-                letter-spacing: 0.01em;
+                font-family: SVN-Gotham,Arial, serif;
+                font-weight: 400;
+                font-size: 15px;
                 text-transform: none;
-                line-height: 1.25rem;
                 text-decoration: none;
                 margin-left: 10px;
             }
@@ -910,6 +908,33 @@ p.text-muted {
                 border-radius: 1000px;
                 color: #fff;
             }
+        }
+    }
+}
+.farm__profile{height: 100%;}
+.farm__profile__content{
+    width: 100%;
+    height: 100%;
+}
+.farm__profile__left{
+    float: left;
+    width: 198px;
+    background: #fff;
+    height: 100%;
+    .child_menu_link{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 14px 10px 14px 18px;
+        gap: 10px;
+        text-decoration: none;
+        span{
+            font-family: 'SVN-Gotham';
+            font-style: normal;
+            font-weight: 450;
+            font-size: 16px;
+            line-height: 22px;
+            color: #0A6836;
         }
     }
 }

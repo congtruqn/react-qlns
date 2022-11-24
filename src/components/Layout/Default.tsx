@@ -37,11 +37,11 @@ const Dashboard: React.FC<Props> = () => {
           />
           <div className='nk-wrap'>
             <Header sidebarToggle={toggleSidebar} setVisibility={setVisibility} fixed theme={themeState.header} />
-            <div>
-              <Routes>
+            
+            <Routes>
                 <Route path={`/farmprofille`} element={<FarmProfile />}></Route>
-              </Routes>
-            </div>
+            </Routes>
+            
           </div>
 
         </div>
