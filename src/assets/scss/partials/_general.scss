@@ -810,7 +810,7 @@ p.text-muted {
     height: 100%;
     text-align: center;
     color: #fff;
-    font-family: "Courier New", Courier, monospace;
+    font-family: "SVN-Gotham";
     padding: 50px 0;
 
     p {
@@ -868,7 +868,7 @@ p.text-muted {
 }
 
 .material-icons {
-    font-family: 'Material Icons';
+    font-family: 'SVN-Gotham';
     font-weight: normal;
     font-style: normal;
     font-size: 24px;
@@ -883,3 +883,33 @@ p.text-muted {
     -webkit-font-smoothing: antialiased;
 }
 /* material icon for material datetime picker */
+.farm__profile_header{
+    background:#fff;
+    padding: 24px;
+}
+.farm__profile_header__nav{
+    ul{
+        li{
+            list-style: none;
+            display: inline;
+            .farm-menu-link{
+                padding: 12px 20px;
+                color: #838283;
+                font-family: 'SVN-Gotham';
+                font-weight: 500;
+                font-size: 14px;
+                letter-spacing: 0.01em;
+                text-transform: none;
+                line-height: 1.25rem;
+                text-decoration: none;
+                margin-left: 10px;
+            }
+            .active{
+                background: #41AD49;
+                box-shadow: -4px 0px 8px rgba(65, 173, 73, 0.24), 4px 0px 8px rgba(65, 173, 73, 0.24);
+                border-radius: 1000px;
+                color: #fff;
+            }
+        }
+    }
+}

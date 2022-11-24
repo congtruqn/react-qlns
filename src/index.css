@@ -1,13 +1,26 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'SVN-Gotham';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+  font-family: "SVN-Gotham";
+  src: url("../src/assets/font/SVN-Gotham/SVN-Gotham-Regular.otf") format("truetype");
+}
+@font-face {
+  font-family: "SVN-Gotham";
+  font-weight: bold;
+  src: url("../src/assets/font/SVN-Gotham/SVN-Gotham-Bold.otf") format("truetype");
+}
+@font-face {
+  font-family: "SVN-Gotham";
+  font-style: italic;
+  src: url("../src/assets/font/SVN-Gotham/SVN-Gotham-Italic.otf") format("truetype");
+}
+@font-face {
+  font-family: "SVN-Gotham";
+  font-weight: bold;
+  font-style: italic;
+  src: url("../src/assets/font/SVN-Gotham/SVN-Gotham-XLight-Italic.otf") format("truetype");
 }

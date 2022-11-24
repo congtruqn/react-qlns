@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-
+import { NavLink, useNavigate } from 'react-router-dom';
 const Menu = () => {
-
+  const navigate = useNavigate();
   return (
     <ul className="nk-menu">
 
@@ -13,10 +13,10 @@ const Menu = () => {
       </li>
 
       <li className="nk-menu-item">
-        <a className="nk-menu-link" href="#">
+        <NavLink  className="nk-menu-link" to="/farmprofille" style={({ isActive }) => ({})}>
           <span className="nk-menu-icon nk-menu-icon1"><em className="icon ni ni-view-col"></em></span>
           <span className="nk-menu-text">Trang trại</span>
-        </a>
+        </NavLink>
       </li>
 
       <li className="nk-menu-item">

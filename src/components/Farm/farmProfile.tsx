@@ -5,7 +5,9 @@ import FarmService from "../../services/farms/farm.service";
 import { RootState } from "../../store";
 import { selectFarm ,fletchFarm} from "../../store/farmReducer";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Modal } from 'antd';
+import { message, Upload, Row, Col, Form, Input, Modal, DatePicker } from 'antd';
+import { ContainerOutlined,AimOutlined,BarChartOutlined,PartitionOutlined} from '@ant-design/icons';
+import { NavLink } from 'react-router-dom'
 import type { RcFile } from 'antd/es/upload/interface';
 import CreateFarm from "./createFarm"
 type Props = {}
@@ -32,57 +34,78 @@ const FarmProfile: React.FC<Props> = () => {
         navigate('/')
     }
     return (
-        <div className="choose-wrapper">
+        <div className="">
             {loading ? (
                 <div className="loader-container">
                     <div className="spinner"></div>
                 </div>
             ) : (
-                <><div className="choose-content">
-                    <div className="card-body text-center">
-                        <div className='choose__logo'>
-                            <img src={logo} className="App-logo" alt="logo" />
-                        </div>
-                        <div className='choose__center'>
-                            <h3 className='choose__title'>GREENFEED QUẢN LÝ NĂNG SUẤT</h3>
-                            <p>Vui lòng chọn 1 trang trại để bắt đầu... Bạn có thể thay đổi trang trại sau ở mục thông tin tài khoản</p>
-                        </div>
-                        <div className='table-responsive'>
-                            <table className='table table-hover'>
-                                <tbody>
-                                { farms.map(item => (
-                                   <tr className='unread' key={item.id} onClick={() => handleChange(item)}>
-                                    <td className='td'>
-                                        <h6 className='"mb-1'>{item.name}</h6>
-                                    </td>
-                                    <td className='td'>
-                                        Kín
-                                    </td>
-                                    <td className='td'>
-                                        <i className="fas fa-map-marker-alt"></i>{item.address}
-                                    </td>
-                                    <td className='td'>
-                                        SL Vật nuôi : {item.farm_size}
-                                    </td>
-                                    </tr>
-                                ))} 
-                                </tbody>
-                            </table>
-                            <div>
-                                <div className='add__farm'>
-                                    <Link to={'#'} onClick={() => setOpen(true)}>+Thêm trại chăn nuôi</Link>
-                                </div>
+                <>
+                    <div className="farm__profile">
+                        <div className='farm__profile_header'>
+                            <div className='farm__profile_header__top'>
+                            <Row>
+                                <Col lg={24} xs={24}>
+                                    <Row>
+                                        <Col lg={16} xs={14}>
+                                            <Row>
+                                                <Col lg={3} xs={12}>
+                                                    <img src='http://139.59.245.254:8081/files/farms/Trai-Cu-Jut.png'></img>
+                                                </Col>
+                                                <Col lg={6} xs={12}>
+                                                    <h4>Trang trại Cư Jut</h4>
+                                                    <p>#ID022211100020222</p>
+                                                </Col>
+                                                <Col lg={6} xs={12}>
+                                                    <h4>Mô hình: Kín</h4>
+                                                    <p>Ngày bắt đầu: 24/12/2021</p>
+                                                </Col>
+                                                <Col lg={8} xs={12}>
+                                                    <p>Khu vực: Thôn KronPak, Cư Jut, Đắk Nông</p>
+                                                </Col>
+                                            </Row>
+                                        </Col>
+                                        <Col lg={8}>
+                                            <p>• Đang hoạt động</p>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                            </Row>
                             </div>
+                            <div className='farm__profile_header__nav'>
+                                <Row>
+                                    <Col xs={10}>
+                                        <div>
+                                            <ul>
+                                                <li>
+                                                    <NavLink  className="farm-menu-link" to="#" style={({ isActive }) => ({})}>
+                                                        <ContainerOutlined /><span> Tổng quan</span>
+                                                    </NavLink>
+                                                </li>
+                                                <li>
+                                                    <NavLink  className="farm-menu-link" to="#" style={({ isActive }) => ({})}>
+                                                        <AimOutlined /><span> Mục tiêu</span>
+                                                    </NavLink>
+                                                </li>
+                                                <li>
+                                                    <NavLink  className="farm-menu-link" to="#" style={({ isActive }) => ({})}>
+                                                    <BarChartOutlined /><span> Thống kê</span>
+                                                    </NavLink>
+                                                </li>
+                                                <li>
+                                                    <NavLink  className="farm-menu-link" to="#" style={({ isActive }) => ({})}>
+                                                        <PartitionOutlined /><span> Phân tích</span>
+                                                    </NavLink>
+                                                </li>                                                                                                
+                                            </ul>
+                                        </div>
+                                    </Col>
+                                </Row>
+                            </div>  
                         </div>
+        
                     </div>
-                    <div className='footer'>
-                        <div>
-                            <p>Điều khoản sử dụng và bảo mật</p>
-                            <p>Phiên bản 12.0.1 - Bản quyên thuộc về <strong>GREENFEED VIETNAM</strong></p>
-                        </div>
-                    </div>
-                </div>
-            </>
+                </>
 
             )}
         </div>

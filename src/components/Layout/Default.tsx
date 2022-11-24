@@ -3,7 +3,7 @@ import Sidebar from "./SideBar";
 import Header from "./Header";
 import { Route, Routes } from 'react-router-dom'
 import classNames from "classnames";
-import SignIn from "../../components/auth/SignIn";
+import FarmProfile from "../../components/Farm/farmProfile";
 type Props = {}
 const Dashboard: React.FC<Props> = () => {
     const [mobileView, setMobileView] = useState();
@@ -39,7 +39,7 @@ const Dashboard: React.FC<Props> = () => {
             <Header sidebarToggle={toggleSidebar} setVisibility={setVisibility} fixed theme={themeState.header} />
             <div>
               <Routes>
-                <Route path={`/farmprofille`} element={<SignIn />}></Route>
+                <Route path={`/farmprofille`} element={<FarmProfile />}></Route>
               </Routes>
             </div>
           </div>
