@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import logo from '../../assets/images/logo.png';
+import {  useNavigate } from 'react-router-dom';
 import FarmService from "../../services/farms/farm.service";
 import { RootState } from "../../store";
-import { chooseFarm, fletchFarm } from "../../store/farmReducer";
 import { useSelector, useDispatch } from "react-redux";
-import { message, Upload, Row, Col, Form, Input, Modal, DatePicker } from 'antd';
-import { ContainerOutlined, AimOutlined, BarChartOutlined, PartitionOutlined } from '@ant-design/icons';
-import { NavLink } from 'react-router-dom'
-import { Route, Routes } from 'react-router-dom'
-import CreateFarm from "./createFarm"
+import { Row, Col} from 'antd';
 type Props = {}
 const FarmInfo: React.FC<Props> = () => {
     const farms = useSelector((state: RootState) => state.farm.selectFarm);
