@@ -10,11 +10,11 @@ const SignIn: React.FC<Props> = () => {
     const navigate = useNavigate();
     const handleLogin = (formValue: { username: string; password: string }) => {
         const { username, password } = formValue;
-        AuthService.login(username, password)
+        AuthService.login('6c56f5e4-2dac-479d-96fb-8101261c8e7b',username, password)
         navigate("/choisefarm");
     };
     const initialValues = {
-        username: "nguyen.np@exceltech.vn",
+        username: "admin",
         password: "123456",
     };
     return (

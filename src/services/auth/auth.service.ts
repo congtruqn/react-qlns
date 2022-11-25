@@ -9,9 +9,10 @@ interface Ilogin  {
 }
 
 class AuthService {
-  async login(username: string, password: string):Promise<Ilogin> {
+  async login(client_id :string,username: string, password: string):Promise<Ilogin> {
     return axios
       .post(API_URL + "login/", {
+        client_id,
         username,
         password
       })
