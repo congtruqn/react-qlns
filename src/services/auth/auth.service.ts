@@ -17,12 +17,14 @@ class AuthService {
         password
       })
       .then(response => {
-        
         if (response.data?.data?.access_token) {
           localStorage.setItem("access", JSON.stringify(response.data.data.access_token));
           localStorage.setItem("refresh", JSON.stringify(response.data.data.refresh_token));
         }
-        return response.data;
+        //return response.data;
+        return {
+          access:response.data.data.access_token
+        }
       });
   }
   async logout():Promise<any>{

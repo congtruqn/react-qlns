@@ -3,14 +3,17 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 import logo from '../../assets/images/logo_has_slogan.png';
 import AuthService from "../../services/auth/auth.service";
+import { setToken} from "../../store/authReducer";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 type Props = {}
 const SignIn: React.FC<Props> = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const handleLogin = (formValue: { username: string; password: string }) => {
+    const handleLogin = async (formValue: { username: string; password: string }) => {
         const { username, password } = formValue;
-        AuthService.login('6c56f5e4-2dac-479d-96fb-8101261c8e7b',username, password)
+        let Itoken = await AuthService.login('6c56f5e4-2dac-479d-96fb-8101261c8e7b',username, password);
+        let token  =Itoken.access
+        dispatch(setToken(token));
         navigate("/choisefarm");
     };
     const initialValues = {
