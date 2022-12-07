@@ -21,7 +21,7 @@ class FarmService {
     return await axiosInstance
       .post(FARM_API+'/farms',data)
       .then(response => {
-        return response.data.data;
+        return response.data;
       });
   };
 }

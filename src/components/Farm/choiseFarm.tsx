@@ -5,7 +5,6 @@ import FarmService from "../../services/farms/farm.service";
 import { RootState } from "../../store";
 import { chooseFarm ,fletchFarm} from "../../store/farmReducer";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Modal } from 'antd';
 import type { RcFile } from 'antd/es/upload/interface';
 import CreateFarm from "../../components/Farm/createFarm"
 type Props = {}
@@ -22,7 +21,6 @@ const ChoiseFarm: React.FC<Props> = () => {
             setFarms(response.results)
             dispatch(fletchFarm(response.results));
             setLoading(false);
-            
         }
         fetchMyAPI()
     }, [])
@@ -32,10 +30,8 @@ const ChoiseFarm: React.FC<Props> = () => {
         navigate('/')
     }
     const onCreate = async (values: any) => {
-        console.log(values)
         const formData = new FormData();
         formData.append('file', values.file as RcFile);
-        setOpen(false);
         let response = await FarmService.createFarms(JSON.stringify({
             name:values.name,
             farm_code: values.farm_code,
@@ -51,11 +47,14 @@ const ChoiseFarm: React.FC<Props> = () => {
             business_unit: 0,
             longitude: 0,
             latitude: 0,
-            base64_image: values.file,
+            image_data: values.file,
+            tenant_id: "6af69148-6a3b-40a4-87a5-6fea3e82b14f",
         }));
-        setFarms([response.farm,...farms])
-        let farm = [response.farm,...farms]
+        console.log(response.data)
+        setFarms([response.data,...farms])
+        let farm = [response.data,...farms]
         dispatch(fletchFarm(farm));
+        setOpen(false);
       };
     return (
         <div className="choose-wrapper">

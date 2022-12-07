@@ -74,7 +74,7 @@ const FarmProfile: React.FC<Props> = () => {
                             </div>
                             <div className='farm__profile_header__nav'>
                                 <Row>
-                                    <Col xs={10}>
+                                    <Col xs={18}>
                                         <div>
                                             <ul>
                                                 <li>

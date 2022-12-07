@@ -13,11 +13,11 @@ const SignIn: React.FC<Props> = () => {
         const { username, password } = formValue;
         let Itoken = await AuthService.login('6c56f5e4-2dac-479d-96fb-8101261c8e7b',username, password);
         let token  =Itoken.access
-        dispatch(setToken(token));
+        dispatch(setToken(token))
         navigate("/choisefarm");
     };
     const initialValues = {
-        username: "admin",
+        username: "admin.qlns@greenfeed.com.vn",
         password: "123456",
     };
     return (
