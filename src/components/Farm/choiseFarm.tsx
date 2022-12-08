@@ -7,6 +7,8 @@ import { chooseFarm ,fletchFarm} from "../../store/farmReducer";
 import { useSelector, useDispatch } from "react-redux";
 import type { RcFile } from 'antd/es/upload/interface';
 import CreateFarm from "../../components/Farm/createFarm"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 type Props = {}
 const ChoiseFarm: React.FC<Props> = () => {
     const dispatch = useDispatch();
@@ -44,7 +46,6 @@ const ChoiseFarm: React.FC<Props> = () => {
             contact_person: values.contact_person,
             contact_phone: values.contact_phone,
             image: values.image,
-            business_unit: 0,
             longitude: 0,
             latitude: 0,
             image_data: values.file,
@@ -58,6 +59,7 @@ const ChoiseFarm: React.FC<Props> = () => {
       };
     return (
         <div className="choose-wrapper">
+            <ToastContainer />
             {loading ? (
                 <div className="loader-container">
                     <div className="spinner"></div>

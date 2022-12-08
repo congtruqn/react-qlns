@@ -4,6 +4,8 @@ import Header from "./Header";
 import { Route, Routes } from 'react-router-dom'
 import classNames from "classnames";
 import FarmProfile from "../../components/Farm/farmProfile";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 type Props = {}
 const Dashboard: React.FC<Props> = () => {
     const [mobileView, setMobileView] = useState();
@@ -37,7 +39,7 @@ const Dashboard: React.FC<Props> = () => {
           />
           <div className='nk-wrap'>
             <Header sidebarToggle={toggleSidebar} setVisibility={setVisibility} fixed theme={themeState.header} />
-            
+            <ToastContainer />
             <Routes>
                 <Route path={`/farmprofille/*`} element={<FarmProfile />}></Route>
             </Routes>
