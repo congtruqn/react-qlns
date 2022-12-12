@@ -44,7 +44,6 @@ const Header = ({ fixed, theme, className = null, setVisibility, ...props }) => 
     round={true}
   /> {defaultFarms.name}</>
 }
-  console.log(listFarms)
   const handleLogout =async () => {
     await AuthService.logout()
     navigate("/signin");

@@ -34,6 +34,7 @@ const ChoiseFarm: React.FC<Props> = () => {
     const onCreate = async (values: any) => {
         const formData = new FormData();
         formData.append('file', values.file as RcFile);
+        setOpen(false);
         let response = await FarmService.createFarms(JSON.stringify({
             name:values.name,
             farm_code: values.farm_code,
@@ -51,11 +52,10 @@ const ChoiseFarm: React.FC<Props> = () => {
             image_data: values.file,
             tenant_id: "6af69148-6a3b-40a4-87a5-6fea3e82b14f",
         }));
-        console.log(response.data)
         setFarms([response.data,...farms])
         let farm = [response.data,...farms]
         dispatch(fletchFarm(farm));
-        setOpen(false);
+        
       };
     return (
         <div className="choose-wrapper">
